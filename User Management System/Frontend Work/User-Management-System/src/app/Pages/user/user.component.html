@@ -1,0 +1,212 @@
+
+<div class="container">
+
+    <!-- Store Operation -->
+    <!-- Button trigger modal to Store User --> 
+    <button type="button" class="btn btn-primary mt-2" data-bs-toggle="modal" data-bs-target="#exampleModal_store">
+        <b>Store User</b>
+    </button>
+
+    <!-- More Operations -->
+    <!-- Button trigger modal to more Operations --> 
+    <button class="btn btn-warning mt-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample_more" aria-controls="offcanvasExample">
+        <i class="material-icons" style="font-size:25px">view_headline</i> 
+    </button> 
+
+    
+    <!-- Modal for Store User -->
+    <div class="modal fade" id="exampleModal_store" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h4>Store User</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form #userRef_store = "ngForm" (ngSubmit)="store_User_In_Db(userRef_store)">
+                    <!-- <label>PId </label>
+                    <input type="number" name="pid" ngModel required placeholder="Use random number"/><br/> -->
+                    <label>User Name: </label>
+                    <input type="text" class="form-control" name="uName" ngModel required/><br>
+                    <label>User Email:  </label>
+                    <input type="email" class="form-control" name="uEmail" ngModel required minlength="3" pattern="[a-z]+[0-9]*@[a-z]+.com"/>
+                    <div *ngIf=" userRef_store.controls['uEmail'].invalid && 
+                                (userRef_store.controls['uEmail'].dirty   ||   userRef_store.controls['uEmail'].touched) ">
+
+                            <span [hidden]="!userRef_store.controls['uEmail'].errors?.['required']">User email is required<br></span>
+                            <span [hidden]="!userRef_store.controls['uEmail'].errors?.['minlength']">User email must be contain 3 characters<br></span>
+                            <span [hidden]="!userRef_store.controls['uEmail'].errors?.['pattern']">Pattern must be matched</span>
+                    </div> <br>
+
+                    <label>User Password: </label>
+                    <input type="password" class="form-control" name="uPassword" ngModel required minlength="4"/><br>
+                    <label>User Role: </label>
+                    <input type="text" class="form-control" name="uRole" ngModel required pattern="USER" placeholder="USER"/>
+                    <div *ngIf=" userRef_store.controls['uRole'].invalid && 
+                                (userRef_store.controls['uRole'].dirty   ||   userRef_store.controls['uRole'].touched) ">
+
+                            <span [hidden]="!userRef_store.controls['uRole'].errors?.['required']">User Role is required<br></span>
+                            <span [hidden]="!userRef_store.controls['uRole'].errors?.['pattern']">Enter Role as USER</span>
+                    </div> <br>
+
+                    <label>User Photo URL: </label>
+                    <input type="url" name="url" class="form-control" ngModel required/><br>
+                    <input type="submit" value="Click to store User Details" [disabled]="userRef_store.invalid"/>
+                    <input type="reset" value="Reset"/>
+                </form>
+            </div>
+            
+        </div>
+        </div>
+    </div>
+
+</div> <br>
+
+<!--==========================================================================================================================-->
+
+<!-- This is for more operations  -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample_more" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+        <span class="offcanvas-title" id="offcanvasExampleLabel" style="font-size:x-large;">More</span>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item" routerLink="/profile" type="button">
+                    <i class='fas fa-user-circle'></i>&nbsp;<b>Profile</b>
+                </li>
+                <li class="list-group-item" routerLink="/products" type="button">
+                    <i class='fas fa-database'></i>&nbsp;<b>Products</b>
+                </li>
+                <li class="list-group-item"routerLink="/discount" type="button">
+                    <i class="fa fa-tags"></i>&nbsp;<b>Discount</b>
+                </li>
+                <li class="list-group-item"routerLink="/orders" type="button">
+                    <i class='fas fa-layer-group'></i>&nbsp;<b>Orders</b>
+                </li>
+                <li class="list-group-item"routerLink="/email" type="button">
+                    <i class="material-icons" style="font-size:15px">mail</i>&nbsp;<b>Email</b>
+                </li>
+            </ul>
+        </div>
+
+        <div class="dropdown mt-3">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown">
+                Dropdown button
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<!--==========================================================================================================================-->
+
+    <!-- Search Operation | Normal -->
+    <div class="container search-box">
+        <label ><b>Search</b></label>&nbsp;
+        <label><input type = "text" name="search" [(ngModel)]="searchText" placeholder ="Enter here" /></label> <br>
+    </div> 
+
+    <!-- Search Operation | Using Material -->
+    <mat-form-field appearance="outline" class="container search-box">
+        <mat-label>Search here</mat-label>
+        <input matInput placeholder="Enter here" type = "text" name="search" [(ngModel)]="searchText">
+    </mat-form-field>
+
+
+<!--==========================================================================================================================-->
+
+<div class="container">
+
+    <!------------------------- Retrive Operation -------------------------------->
+    <!--  <input type="button" value="See Product" (click)="getAllUser()">  -->
+    <!-- <span style="color:red">{{storeMsg}}</span> -->
+    <table class="table table-striped" style="border:2px solid black;">
+        <tr>
+            <th>User Name</th>
+            <th>User Email</th>
+            <th>User Password</th>
+            <th>User Role</th>
+            <th>Passport Photo</th>
+            <th>Delete</th>
+            <th>Update</th>
+        </tr>
+        <tr *ngFor="let us of users | filter:searchText | paginate: {
+                                                                      itemsPerPage: tableSize,
+                                                                      currentPage: pageNo,
+                                                                      totalItems: count
+                                                                    }; let i = index "> 
+            <td>{{us.uName}}</td>
+            <td>{{us.uEmail}}</td>
+            <td>{{us.uPassword}}</td>
+            <td>{{us.uRole}}</td>
+            <td><img src={{us.url}} width="140" height="120"/></td>
+                  <!--=============== Delete Operation ============-->
+            <td><button class="btn btn-warning" (click)="delete_Record(us.uEmail)">Delete</button></td>
+            <td>  <!--===============- Button trigger modal for Update =============-->
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal_update" (click)="get_record_for_update(us)">Update</button>
+            </td>
+        </tr>
+    </table>
+
+
+
+
+    <!--=========================  Modal for Update ===============================-->
+    <div class="modal fade" id="exampleModal_update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            
+            <div class="modal-header">
+            <h4>Update User</h4>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div>
+                    <form #userRef_update="ngForm" (ngSubmit)="update_User_In_Db()">
+                        <label>User Email: </label>
+                        <input type="text" name="uEmail" class="form-control" [(ngModel)]="uEmail" readonly/><br/>
+                        <label>User Name: </label>
+                        <input type="text" name="uName" class="form-control" [(ngModel)]="uName" ngModel required/><br/>
+                        <label>User Password: </label>
+                        <input type="text" name="uPassword" class="form-control" [(ngModel)]="uPassword" ngModel required/><br/>
+                        <label>User Role: </label>
+                        <input type="text" name="uRole" class="form-control" [(ngModel)]="uRole" readonly/><br/>
+                        <label>User Photo: </label>
+                        <input type="url" name="url" ngModel class="form-control" [(ngModel)]="url" required/><br/>
+                        <input type="submit" value="Click to Update User Details" [disabled]="userRef_update.invalid"/>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </div>
+
+</div>
+
+<!--=======================================  : Pagination Controls : ===============================================-->
+
+<div class="container">
+
+    <!--======================  : Table Size Controls : ================================-->
+   <select (change)="on_table_size_change($event)">
+       <option *ngFor="let size of tableSizes">{{size}}</option>
+   </select>
+   
+
+    <!--======================  : Page Number Controls : ================================-->
+   <pagination-controls
+       previousLabel="Prev" nextLabel="Next"
+       (pageChange)="on_table_data_change($event)">
+   </pagination-controls>
+
+</div>
+
+<!--================================================================================================================-->

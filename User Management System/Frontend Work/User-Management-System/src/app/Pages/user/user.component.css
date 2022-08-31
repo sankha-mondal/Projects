@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    justify-content: center;
+}
+th {
+    padding-left: 1%;
+    text-align:  center;
+}
+td {
+    padding-left: 1%;
+    text-align: center;
+}
+span {
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: brown;
+}
+h4 {
+    color: darkblue;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+b {
+    color: crimson;
+}
+search-box {
+    display: flex;
+    justify-content: center;
+    width: 150%;
+}
+.offcanvas-title {
+    color: white;
+}
+.offcanvas {
+    background-color:darkslategray;
+}
