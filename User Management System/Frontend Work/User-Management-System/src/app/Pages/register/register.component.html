@@ -1,0 +1,156 @@
+
+<!--============================================= Template DF : Type-1 ===============================================-->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-6 offset-3">
+
+            <div class="text-center">
+                <h4>Template DForm : Type-1</h4>
+                <img width=230 src="../../../assets/register_logo.jpg" alt="register_logo.jpg"><br>
+                <h2 class="mt-1">Registration Page</h2>
+            </div>
+
+            <form #userRef_store1="ngForm" (ngSubmit)="store_User_In_Db_1(userRef_store1)">  <!-- Template DF -->
+                <!-- <label>PId </label>
+                <input type="number" name="pid" ngModel required placeholder="Use random number"/><br/> -->
+
+                <!-- Username field-->
+                <label>User Name: </label>
+                <input type="text" class="form-control" name="uName" ngModel required/><br>
+
+                <!-- Email field -->
+                <label>User Email:  </label>
+                <input type="email" class="form-control" name="uEmail" ngModel required minlength="3" pattern="[a-z]+[0-9]*@[a-z]+.com"/>
+                <div *ngIf=" userRef_store1.controls['uEmail'].invalid && 
+                            (userRef_store1.controls['uEmail'].dirty   ||   userRef_store1.controls['uEmail'].touched) ">
+        
+                        <span [hidden]="!userRef_store1.controls['uEmail'].errors?.['required']">User email is required<br></span>
+                        <span [hidden]="!userRef_store1.controls['uEmail'].errors?.['minlength']">User email must be contain 3 characters<br></span>
+                        <span [hidden]="!userRef_store1.controls['uEmail'].errors?.['pattern']">Pattern must be matched</span>
+                </div> <br>
+        
+                <!-- Password field -->
+                <label>User Password: </label>
+                <input type="password" class="form-control" name="uPassword" ngModel required minlength="4"/><br>
+
+                <!-- Role field -->
+                <label>User Role: </label>
+                <input type="text" class="form-control" name="uRole" ngModel required pattern="USER" placeholder="USER"/>
+                <div *ngIf=" userRef_store1.controls['uRole'].invalid && 
+                            (userRef_store1.controls['uRole'].dirty   ||   userRef_store1.controls['uRole'].touched) ">
+        
+                        <span [hidden]="!userRef_store1.controls['uRole'].errors?.['required']">User Role is required<br></span>
+                        <span [hidden]="!userRef_store1.controls['uRole'].errors?.['pattern']">Enter Role as USER</span>
+                </div> <br>
+        
+                <!-- Photo url field -->
+                <label>User Photo URL: </label>
+                <input type="url" class="form-control" name="url" ngModel required/><br>
+
+                <p><a routerLink="/login">Old User? Login here</a></p>
+
+                <!-- <input type="reset" value="Reset"/>
+                <input type="submit" value="Register" [disabled]="userRef_store.invalid"/>    -->
+                
+                <!-- button field -->
+                <div class="d-flex justify-content-center">
+                    <button type="reset" class="btn btn-primary btn-lg">&nbsp;Reset&nbsp;</button>&nbsp;
+                    <button type="submit" class="btn btn-success btn-lg" [disabled]="userRef_store1.invalid">Register</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+  </div>
+
+  <hr>
+
+<!--====================================== Template DF : Type-2 : Using Angular Material =======================================-->
+
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-6 offset-3">
+
+            <div width=230 class="text-center">
+                <h4>Template DF : Type-2 : Using Angular Material</h4>
+                <img src="../../../assets/register_logo.jpg" alt="register_logo.jpg"><br>
+                <h2 class="mt-1">Registration Page</h2>
+            </div>
+
+            <form #userRef_store2="ngForm" (ngSubmit)="store_User_In_Db_2(userRef_store2)">                                                                               <!-- Template DF -->
+                <!-- Username field-->
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>User Name</mat-label>
+                    <input matInput placeholder="Enter User Name" name="uName" ngModel required/>
+                </mat-form-field>
+
+                <!-- <input type="text" class="form-control" name="uName" ngModel required/><br> -->
+
+                <!-- Email field -->
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>User Email</mat-label>
+                    <input matInput placeholder="Enter User Email" name="uEmail" ngModel required minlength="3" pattern="[a-z]+[0-9]*@[a-z]+.com"/>
+                </mat-form-field>
+                <div *ngIf=" userRef_store2.controls['uEmail'].invalid && 
+                        (userRef_store2.controls['uEmail'].dirty   ||   userRef_store2.controls['uEmail'].touched) ">
+    
+                        <mat-hint [hidden]="!userRef_store2.controls['uEmail'].errors?.['required']">User email is required<br></mat-hint>
+                        <mat-hint [hidden]="!userRef_store2.controls['uEmail'].errors?.['minlength']">User email must be contain 3 characters<br></mat-hint>
+                        <mat-hint [hidden]="!userRef_store2.controls['uEmail'].errors?.['pattern']">Pattern must be matched</mat-hint>
+                </div>
+
+                <!-- Password field-->
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>User Password</mat-label>
+                    <input matInput placeholder="Enter User Password" name="uPassword" ngModel required minlength="4"/>
+                </mat-form-field>
+
+                <!-- Role field-->
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>User Role</mat-label>
+                    <input matInput placeholder="Enter User Role" name="uRole" ngModel required pattern="USER" placeholder="USER">
+                </mat-form-field>
+                <div *ngIf=" userRef_store2.controls['uRole'].invalid && 
+                        (userRef_store2.controls['uRole'].dirty   ||   userRef_store2.controls['uRole'].touched) ">
+    
+                    <mat-hint [hidden]="!userRef_store2.controls['uRole'].errors?.['required']">User Role is required<br></mat-hint>
+                    <mat-hint [hidden]="!userRef_store2.controls['uRole'].errors?.['pattern']">Enter Role as USER</mat-hint>
+                </div>
+
+                <!-- Photo url field -->
+                <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>User Photo URL</mat-label>
+                    <input matInput placeholder="Enter User URL" name="url" ngModel required>
+                </mat-form-field>
+
+                <p><a routerLink="/login">Old User? Login here</a></p>
+
+                <!-- <input type="reset" value="Reset"/>
+                <input type="submit" value="Register" [disabled]="userRef_store.invalid"/>    -->
+                
+                <!-- button field -->
+                <div class="d-flex justify-content-center">
+                    <button mat-flat-button color="accent" type="reset">&nbsp;Reset&nbsp;</button>&nbsp;
+                    <button mat-flat-button color="primary" type="submit" [disabled]="userRef_store2.invalid">Register</button>
+                </div>
+                
+            </form>
+
+        </div>
+
+    </div>
+</div> 
+
+<br>
+
+
+
+
+    
+    
+

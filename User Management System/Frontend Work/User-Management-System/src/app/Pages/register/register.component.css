@@ -1,0 +1,12 @@
+mat-hint, span {
+    margin-top: 0%;
+    padding-top: 0%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: darkgreen;
+}
+h4 {
+    color: brown;
+}
+.full-width {
+    width: 100%;
+}
