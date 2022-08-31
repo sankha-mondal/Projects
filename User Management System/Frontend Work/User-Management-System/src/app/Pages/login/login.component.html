@@ -1,0 +1,93 @@
+
+<!--=========================================== Model DForm ====================================================-->
+
+<div class="container-fluid">       <!-- Model DF -->
+  <div *ngIf=progress><mat-progress-bar mode="indeterminate"></mat-progress-bar></div>
+
+    <div class="row">
+
+      <div class="col-6 offset-3">
+
+        <div class="text-center">
+            <h4>Model DForm </h4>
+            <img width=230 src="../../../assets/login_logo.jpg" alt="register_logo.jpg"><br>
+            <h2 class="mt-1">Login Page</h2>
+        </div>
+
+        <form [formGroup]="loginRef1" (ngSubmit)="checkUser()">   
+            <label>Email: </label> 
+            <input type="email" formControlName="email" class="form-control"> <br>
+            <label>Password: </label>
+            <input type="password" formControlName="password" class="form-control">  <br>
+
+            <p><a routerLink="/register">New User? Register here</a></p>
+            <!-- <input type="reset" value="Reset">
+            <input type="submit" value="Submit" [disabled]="loginRef.invalid"> -->
+
+            <div class="d-flex justify-content-center">
+                <button type="reset" class="btn btn-primary">&nbsp;Reset&nbsp;</button>&nbsp;
+                <button type="submit" class="btn btn-success" [disabled]="loginRef1.invalid">&nbsp;Login&nbsp;</button>
+            </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+
+<!--=========================================== Template DForm ====================================================-->  <hr>
+
+
+
+<div class="container-fluid">         <!-- Template DF -->
+  <div *ngIf=progress><mat-progress-bar mode="indeterminate"></mat-progress-bar></div>
+  <div class="row">
+
+    <div class="col-6 offset-3">
+      <mat-card class="example-card">
+
+        <div class="text-center">
+            <h4>Template DForm </h4>
+            <img width=230 src="../../../assets/login_logo.jpg" alt="register_logo.jpg"><br>
+            <h2 class="mt-1">Login Page</h2>
+        </div>
+
+
+        <form #loginRef2="ngForm" (ngSubmit)="loginUser(loginRef2)">
+          <label>Email: </label>
+              <input type="email" name="email" ngModel required minlength="3" class="form-control" pattern="[a-z]+[0-9]*@[a-z]+.com"><br>
+              <div *ngIf=" loginRef2.controls['email'].invalid && 
+                          (loginRef2.controls['email'].dirty || loginRef2.controls['email'].touched) ">
+
+                  <span [hidden]="!loginRef2.controls['email'].errors?.['required']">Email is required <br></span>
+                  <span [hidden]="!loginRef2.controls['email'].errors?.['minlength']">Email must be contain 3 characters <br></span>
+                  <span [hidden]="!loginRef2.controls['email'].errors?.['pattern']">Pattern must be matched <br></span>
+              </div>
+
+          <label>Password: </label>
+              <input type="password" name="password" ngModel required class="form-control"><br>
+              <div *ngIf="loginRef2.controls['password'].invalid && 
+                          (loginRef2.controls['password'].dirty || loginRef2.controls['password'].touched) ">
+
+                  <span [hidden]="!loginRef2.controls['password'].errors?.['required']">Password is required <br></span>
+              </div>
+
+              <p><a routerLink="/register">New User? Register here</a></p>
+
+              <div class="d-flex justify-content-center">
+                <button type="reset" class="btn btn-primary">&nbsp;Reset&nbsp;</button>&nbsp;
+                <button type="submit" class="btn btn-success" [disabled]="loginRef2.invalid">&nbsp;Login&nbsp;</button>
+              </div> <br>
+        </form>
+
+        <mat-card-footer>
+            <div *ngIf=progress><mat-progress-bar mode="indeterminate"></mat-progress-bar></div>
+        </mat-card-footer>
+
+      </mat-card>
+    </div>
+
+  </div>
+</div> 
+
+<br>
