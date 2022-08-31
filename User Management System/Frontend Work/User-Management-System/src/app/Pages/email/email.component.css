@@ -1,0 +1,18 @@
+.example-card {
+    margin-bottom: 8px;
+}
+.container-fluid {
+  text-align: center;
+  background-color: #e2e2e2;
+}
+h3 {
+  color: brown;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+span {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: brown;
+}
+.full-width {
+  width: 100%;
+}

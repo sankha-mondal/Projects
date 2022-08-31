@@ -1,0 +1,53 @@
+<div class="container-fluid">
+    <div class="row">
+        
+        <div class="col-6 offset-3">
+            <mat-card class="example-card">
+                <div class="text-center">
+                    <h3>Template DForm with 2-way bunding | No use of Class & Interface</h3>
+                    <img width=230 src="../../../assets/email_logo.jpg" alt="register_logo.jpg"><br>
+                </div>
+
+<!--===================================== Template DF with 2-way bunding ============================================-->
+
+                <form (ngSubmit)="send_email()">                                                      
+                    {{ email | json }}
+
+                    <!-- To field-->
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>To</mat-label>
+                        <input matInput placeholder="Enter here" name="recipient"
+                                    [(ngModel)]="email.recipient" required/>
+                    </mat-form-field>
+
+                    <!-- Subject field-->
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>Subject</mat-label>
+                        <input matInput placeholder="Enter here" name="subject"
+                                    [(ngModel)]="email.subject" required/>
+                    </mat-form-field>
+
+                    <!-- Text area field-->
+                    <mat-form-field appearance="fill" class="full-width">
+                        <mat-label>Text area</mat-label>
+                        <textarea matInput placeholder="Hey, What are you doing.." rows="6" name="msgBody"
+                                    [(ngModel)]="email.msgBody" required></textarea>
+                    </mat-form-field>
+
+                    <!-- Progress spinner configuration -->
+                    <mat-spinner *ngIf="flag" style="margin:auto;"></mat-spinner><br>
+
+                    <!-- Button field-->
+                    <div class="d-flex justify-content-center">
+                        <button mat-flat-button color="accent" type="reset">Reset</button>&nbsp;
+                        <button mat-flat-button color="primary" type="submit" [disabled]="flag">Send</button>
+                        <!-- [disabled]="email_store.invalid"   (click)="send_btn()"  -->
+                    </div>
+
+                </form>
+
+            </mat-card>
+        </div>
+        
+    </div>
+</div>
