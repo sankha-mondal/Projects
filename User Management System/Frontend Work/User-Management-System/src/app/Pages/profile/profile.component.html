@@ -1,0 +1,26 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-3"></div>
+
+        <div class="col-6">
+            <h2 style="text-align:center;">Edit Profile</h2>
+            <form #userRef_update="ngForm" (ngSubmit)="update_User_In_Db()">
+                <label>User Email: </label>
+                <input type="text" name="uEmail" class="form-control" [(ngModel)]="uEmail" readonly/><br/>
+                <label>User Name: </label>
+                <input type="text" name="uName" class="form-control" [(ngModel)]="uName" ngModel required/><br/>
+                <label>User Password: </label>
+                <input type="text" name="uPassword" class="form-control" [(ngModel)]="uPassword" ngModel required/><br/>
+                <label>User Role: </label>
+                <input type="text" name="uRole" class="form-control" [(ngModel)]="uRole" readonly/><br/>
+                <label>User Photo: </label>
+                <input type="url" name="url" ngModel class="form-control" [(ngModel)]="url" required/><br/>
+                <input type="submit" value="Click to Update Your Details" [disabled]="userRef_update.invalid"/>
+            </form>
+        </div>
+
+        <div class="col-3"></div>
+    </div>
+</div>
+
