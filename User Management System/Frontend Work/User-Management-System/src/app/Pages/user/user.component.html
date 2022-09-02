@@ -127,31 +127,35 @@
     <!--  <input type="button" value="See Product" (click)="getAllUser()">  -->
     <!-- <span style="color:red">{{storeMsg}}</span> -->
     <table class="table table-striped" style="border:2px solid black;">
-        <tr>
-            <th>User Name</th>
-            <th>User Email</th>
-            <th>User Password</th>
-            <th>User Role</th>
-            <th>Passport Photo</th>
-            <th>Delete</th>
-            <th>Update</th>
-        </tr>
-        <tr *ngFor="let us of users | filter:searchText | paginate: {
-                                                                      itemsPerPage: tableSize,
-                                                                      currentPage: pageNo,
-                                                                      totalItems: count
-                                                                    }; let i = index "> 
-            <td>{{us.uName}}</td>
-            <td>{{us.uEmail}}</td>
-            <td>{{us.uPassword}}</td>
-            <td>{{us.uRole}}</td>
-            <td><img src={{us.url}} width="140" height="120"/></td>
-                  <!--=============== Delete Operation ============-->
-            <td><button class="btn btn-warning" (click)="delete_Record(us.uEmail)">Delete</button></td>
-            <td>  <!--===============- Button trigger modal for Update =============-->
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal_update" (click)="get_record_for_update(us)">Update</button>
-            </td>
-        </tr>
+        <thead>
+            <tr>
+                <th>User Name</th>
+                <th>User Email</th>
+                <th>User Password</th>
+                <th>User Role</th>
+                <th>Passport Photo</th>
+                <th>Delete</th>
+                <th>Update</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let us of users | filter:searchText | paginate: {
+                                                                          itemsPerPage: tableSize,
+                                                                          currentPage: pageNo,
+                                                                          totalItems: count
+                                                                        }; let i = index "> 
+                    <td>{{us.uName}}</td>
+                    <td>{{us.uEmail}}</td>
+                    <td>{{us.uPassword}}</td>
+                    <td>{{us.uRole}}</td>
+                    <td><img src={{us.url}} width="140" height="120"/></td>
+                          <!--=============== Delete Operation ============-->
+                    <td><button class="btn btn-warning" (click)="delete_Record(us.uEmail)">Delete</button></td>
+                    <td>  <!--===============- Button trigger modal for Update =============-->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal_update" (click)="get_record_for_update(us)">Update</button>
+                    </td>
+              </tr>
+        </tbody>
     </table>
 
 
