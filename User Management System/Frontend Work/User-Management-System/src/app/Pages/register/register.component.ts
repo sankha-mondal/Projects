@@ -72,12 +72,12 @@ export class RegisterComponent implements OnInit {
     {category: 'Other'},
   ];
 
-  // ====================== :Term & Conditions field : =========================
+  // ====================== : Term & Conditions field : =========================
   toppings = this._formBuilder.group({
     terms: true,
   });
 
-
+  // ================= : Password field hidden Operation : =======================
   hide = true;
 
 
