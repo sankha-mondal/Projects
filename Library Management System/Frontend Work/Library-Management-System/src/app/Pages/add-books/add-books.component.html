@@ -1,0 +1,60 @@
+<!--======================== : Store Category Operation : ===========================-->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-6 offset-3">
+
+            <div class="text-center">
+                <h4>Template DForm</h4>
+                <img width=230 src="../../../assets/add.jpg" alt="register_logo.jpg"><br>
+                <h3 class="mt-1">Add Book Name Page</h3>
+            </div>
+
+            <form #storeRef="ngForm" (ngSubmit)="store_book_In_Db(storeRef)">  <!-- Template DF -->
+                <!-- <label>Id </label>
+                <input type="number" name="pid" ngModel required placeholder="Use random number"/><br/> -->
+
+                <!-- Book name field -->
+                <label>Book Name:  </label>
+                <input type="text" class="form-control" name="bookName" ngModel required minlength="3" placeholder="Enter here.."/>
+                <div *ngIf=" storeRef.controls['bookName'].invalid && 
+                            (storeRef.controls['bookName'].dirty   ||   storeRef.controls['bookName'].touched) ">
+        
+                        <span [hidden]="!storeRef.controls['bookName'].errors?.['required']">Book name is required<br></span>
+                        <span [hidden]="!storeRef.controls['bookName'].errors?.['minlength']">Book name must be contain 3 characters<br></span>
+                </div> <br>   
+                
+                
+                <div class="container">
+                    <div class="row">
+                
+                        <div class="col">
+                            <div class="p-3 border bg-light">
+                                <!-- Search Operation | Normal -->
+                                <div class="container search-box">
+                                    <label><input type = "text" name="search" [(ngModel)]="search_category" placeholder ="Search here" /></label> <br><br>
+                                </div> 
+                                <button type="reset" class="btn btn-primary">&nbsp;Reset&nbsp;</button>&nbsp;
+                                <table class="table table-striped table-hover">
+                                    <tbody>
+                                        <tr *ngFor="let category of categories | filter:search_category">
+                                            <td style="padding-left:5%;">{{category.id}}</td>
+                                            <td style="padding-left:18%;">{{category.categoryName}}</td>
+                                            <td style="padding-left:15%;"><button type="submit" class="btn btn-success" [disabled]="storeRef.invalid" (click)="get_record_for_store(category)">ADD</button></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <br> <br><br>
+            </form>
+
+        </div>
+
+    </div>
+  </div>
+

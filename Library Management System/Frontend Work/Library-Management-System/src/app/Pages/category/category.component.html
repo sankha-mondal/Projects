@@ -1,0 +1,74 @@
+<h2>All Category wise Books</h2><br>
+<!--======================== : Retrive Operation : ========================================-->
+<div class="container-fluid">
+    <table class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Category Name</th>
+                <th>Description</th>
+                <th>Available</th>
+                <th>Book Id</th>
+                <th>Book Name</th>
+                <th>Delete Category</th>
+                <th>Update Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let category of categories | filter:searchText">
+                    <td>{{category.categoryName}}</td>
+                    <td>{{category.description}}</td>
+                    <td>{{category.available}}</td>
+
+                    <!--========== Entering nested loop =============-->
+                    <td class="inside1">
+                        <tr *ngFor="let book of category.books">
+                            <td>{{book.id}}</td>
+                        </tr>
+                    </td>
+                    <td class="inside2">
+                        <tr *ngFor="let book of category.books">
+                            <td>{{book.bookName}}</td>
+                        </tr>
+                    </td>
+                    <!--=============== Delete Operation ============-->
+                    <td><button class="btn btn-warning" (click)="deleteRec(category.id)">Delete</button></td>
+                    <td>  <!--===============- Button trigger modal for Update =============-->
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal_update" (click)="get_record_for_update(category)">Update</button>
+                    </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!--===================================================================================================================================================================================================-->
+
+
+<!--=========================  Modal for Update ===============================-->
+<div class="modal fade" id="exampleModal_update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        
+        <div class="modal-header">
+        <h4>Update Category</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+
+        <div class="modal-body">
+            <div>
+                <form #categoryRef_update="ngForm" (ngSubmit)="update_Category_In_Db()">
+                    <label>Category Id: </label>
+                    <input type="number" name="id" class="form-control" [(ngModel)]="id" readonly/><br/>
+                    <label>Category Name: </label>
+                    <input type="text" name="categoryName" class="form-control" [(ngModel)]="categoryName" ngModel required/><br/>
+                    <label>Category Description: </label>
+                    <input type="text" name="description" class="form-control" [(ngModel)]="description" ngModel required/><br/>
+                    <label>Category Available: </label>
+                    <input type="text" name="available" class="form-control" [(ngModel)]="available" ngModel required/><br/>
+                    <input type="submit" value="Click to Update Category" [disabled]="categoryRef_update.invalid"/>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    </div>
+</div>

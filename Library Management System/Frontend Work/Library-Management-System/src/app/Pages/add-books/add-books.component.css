@@ -1,0 +1,8 @@
+span {
+    color: brown;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.search-box {
+    display: flex;
+    justify-content: center;
+}

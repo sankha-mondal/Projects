@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+      <img routerLink="/" src="https://www.nicepng.com/png/full/246-2462520_cloud-library-design.png" alt="" width="40" height="35" class="d-inline-block align-text-top">&nbsp;&nbsp;&nbsp;
+      <a class="navbar-brand" style="font-weight:bold;" routerLink="/">Library</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+          </li> -->
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/category">Category</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/add-category">Add</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/books">Books</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/add-books">Add</a>
+          </li>
+        
+
+
+
+          
+
+        </ul>
+
+
+        <form class="d-flex">
+          <input class="form-control me-2" type="search" name="search" [(ngModel)]="searchText" placeholder ="Enter here" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit" (click)="search(searchText)">Search</button>
+        </form>
+
+      </div>
+    </div>
+  </nav>

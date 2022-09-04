@@ -1,0 +1,58 @@
+<!--======================== : Store Category Operation : ===========================-->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="col-6 offset-3">
+
+            <div class="text-center">
+                <h4>Template DForm</h4>
+                <img width=230 src="../../../assets/add.jpg" alt="register_logo.jpg"><br>
+                <h3 class="mt-1">Add Category Page</h3>
+            </div>
+
+            <form #storeRef="ngForm" (ngSubmit)="store_category_In_Db(storeRef)">  <!-- Template DF -->
+                <!-- <label>Id </label>
+                <input type="number" name="pid" ngModel required placeholder="Use random number"/><br/> -->
+
+                <!-- CategoryName field-->
+                <label>Category Name: </label>
+                <input type="text" class="form-control" name="categoryName" ngModel required placeholder="Enter here.."/><br>
+
+                <!-- Description field -->
+                <label>Category Description:  </label>
+                <input type="email" class="form-control" name="description" ngModel required minlength="3" placeholder="Enter here.."/>
+                <div *ngIf=" storeRef.controls['description'].invalid && 
+                            (storeRef.controls['description'].dirty   ||   storeRef.controls['description'].touched) ">
+        
+                        <span [hidden]="!storeRef.controls['description'].errors?.['required']">Book name is required<br></span>
+                        <span [hidden]="!storeRef.controls['description'].errors?.['minlength']">Book name must be contain 3 characters<br></span>
+                </div> <br>
+
+                <!-- Role field -->
+                <label>Category available: </label>
+                <input type="text" class="form-control" name="available" ngModel required pattern="[true]*[false]*" placeholder="Enter true or false"/>
+                <div *ngIf=" storeRef.controls['available'].invalid && 
+                            (storeRef.controls['available'].dirty   ||   storeRef.controls['available'].touched) ">
+        
+                        <span [hidden]="!storeRef.controls['available'].errors?.['required']">Category status is required<br></span>
+                        <span [hidden]="!storeRef.controls['available'].errors?.['pattern']">Enter true or false</span>
+                </div> <br>
+        
+
+                <!-- <p><a routerLink="/login">Old User? Login here</a></p> -->
+
+                <!-- <input type="reset" value="Reset"/>
+                <input type="submit" value="Register" [disabled]="userRef_store.invalid"/>    -->
+                
+                <!-- button field -->
+                <div class="d-flex justify-content-center">
+                    <button type="reset" class="btn btn-primary">&nbsp;Reset&nbsp;</button>&nbsp;
+                    <button type="submit" class="btn btn-success" [disabled]="storeRef.invalid">Add</button>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+  </div>
